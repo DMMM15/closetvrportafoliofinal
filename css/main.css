@@ -1,0 +1,1076 @@
+/* ================================================================
+   CLOSET VR — main.css  |  Luxury Tech Editorial Edition
+   Siempre va DESPUÉS de Bootstrap para sobrescribir sus valores.
+
+   FUENTES: Cormorant Garamond (display fashion) + Outfit (body)
+   PALETA:  Negro profundo · Dorado cálido · Crema marfil
+================================================================ */
+
+/* ── Google Fonts ─────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Outfit:wght@300;400;500;600;700;800&display=swap');
+
+/* ================================================================
+   1. VARIABLES GLOBALES
+================================================================ */
+:root {
+  --negro:        #080808;
+  --negro-soft:   #111111;
+  --negro-card:   #161616;
+  --gold:         #C9A96E;
+  --gold-light:   #E2C88F;
+  --gold-dim:     rgba(201,169,110,0.15);
+  --crema:        #F7F2E9;
+  --crema-dim:    rgba(247,242,233,0.06);
+  --gris-texto:   rgba(247,242,233,0.55);
+  --blanco:       #FFFFFF;
+
+  --font-display: 'Cormorant Garamond', Georgia, serif;
+  --font-body:    'Outfit', system-ui, sans-serif;
+
+  --radio:        14px;
+  --radio-lg:     22px;
+  --sombra:       0 8px 40px rgba(0,0,0,0.55);
+  --sombra-gold:  0 0 40px rgba(201,169,110,0.18);
+  --trans:        0.35s cubic-bezier(0.4,0,0.2,1);
+}
+
+
+/* ================================================================
+   2. BASE
+================================================================ */
+*, *::before, *::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--negro);
+  color: var(--crema);
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+
+img { max-width: 100%; height: auto; }
+
+/* Grain overlay global — da textura editorial */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 9998;
+  opacity: 0.6;
+}
+
+/* Animación de entrada genérica */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position:  200% center; }
+}
+
+@keyframes pulse-gold {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(201,169,110,0.35); }
+  50%       { box-shadow: 0 0 0 12px rgba(201,169,110,0); }
+}
+
+
+/* ================================================================
+   3. NAVBAR — glassmorphism oscuro con acento dorado
+================================================================ */
+.navbar {
+  background: rgba(8,8,8,0.82) !important;
+  backdrop-filter: blur(18px) saturate(1.4);
+  -webkit-backdrop-filter: blur(18px) saturate(1.4);
+  border-bottom: 1px solid rgba(201,169,110,0.12);
+  padding: 14px 0;
+  transition: background var(--trans), box-shadow var(--trans);
+}
+
+.navbar.scrolled {
+  background: rgba(8,8,8,0.97) !important;
+  box-shadow: 0 4px 32px rgba(0,0,0,0.6);
+}
+
+/* Brand */
+.navbar-brand {
+  font-family: var(--font-display) !important;
+  font-size: 1.65rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  background: linear-gradient(135deg, var(--gold-light) 0%, var(--gold) 50%, #A07840 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  padding: 0 !important;
+  transition: opacity var(--trans);
+}
+
+.navbar-brand:hover { opacity: 0.8; }
+
+/* Nav links */
+.navbar .nav-link {
+  color: rgba(247,242,233,0.75) !important;
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 0.82rem;
+  text-transform: uppercase;
+  letter-spacing: 1.4px;
+  padding: 8px 14px !important;
+  position: relative;
+  transition: color var(--trans);
+}
+
+.navbar .nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 4px;
+  left: 50%;
+  transform: translateX(-50%) scaleX(0);
+  width: 60%;
+  height: 1px;
+  background: var(--gold);
+  transition: transform var(--trans);
+}
+
+.navbar .nav-link:hover { color: var(--gold-light) !important; }
+.navbar .nav-link:hover::after { transform: translateX(-50%) scaleX(1); }
+.navbar .nav-link.active { color: var(--gold-light) !important; }
+.navbar .nav-link.active::after { transform: translateX(-50%) scaleX(1); }
+
+/* Hamburger */
+.navbar-toggler {
+  border: 1px solid rgba(201,169,110,0.3) !important;
+  border-radius: 8px;
+}
+.navbar-toggler-icon {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(201,169,110,0.9)' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
+}
+
+/* Dropdown */
+.dropdown-menu {
+  background: rgba(16,14,12,0.97) !important;
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(201,169,110,0.18) !important;
+  border-radius: var(--radio) !important;
+  box-shadow: var(--sombra) !important;
+  padding: 8px !important;
+  margin-top: 8px !important;
+}
+
+.dropdown-item {
+  font-family: var(--font-body);
+  font-size: 0.82rem;
+  font-weight: 500;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: rgba(247,242,233,0.7) !important;
+  border-radius: 8px !important;
+  padding: 9px 16px !important;
+  transition: background var(--trans), color var(--trans);
+}
+
+.dropdown-item:hover {
+  background: var(--gold-dim) !important;
+  color: var(--gold-light) !important;
+}
+
+.dropdown-item.active {
+  background: var(--gold-dim) !important;
+  color: var(--gold) !important;
+  font-weight: 600;
+}
+
+.dropdown-item.disabled {
+  color: rgba(247,242,233,0.25) !important;
+}
+
+/* Botón descarga navbar */
+.navbar .btn,
+.navbar a.btn {
+  background: transparent !important;
+  border: 1px solid var(--gold) !important;
+  color: var(--gold) !important;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.78rem;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  padding: 9px 20px !important;
+  border-radius: 50px !important;
+  transition: background var(--trans), color var(--trans), box-shadow var(--trans);
+}
+
+.navbar .btn:hover,
+.navbar a.btn:hover {
+  background: var(--gold) !important;
+  color: var(--negro) !important;
+  box-shadow: 0 4px 20px rgba(201,169,110,0.35);
+}
+
+
+/* ================================================================
+   4. SECCIÓN TOP — video hero centrado
+================================================================ */
+.top-section {
+  background: var(--negro-soft);
+  padding: 80px 0 60px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Halo dorado de fondo */
+.top-section::before {
+  content: '';
+  position: absolute;
+  top: -20%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60%;
+  height: 60%;
+  background: radial-gradient(ellipse, rgba(201,169,110,0.07) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.top-section video {
+  border-radius: var(--radio-lg);
+  box-shadow: var(--sombra), var(--sombra-gold);
+  border: 1px solid rgba(201,169,110,0.14);
+}
+
+/* Botón principal de descarga */
+.top-section .btn,
+.top-section a.btn {
+  background: linear-gradient(135deg, var(--gold-light), var(--gold)) !important;
+  color: var(--negro) !important;
+  border: none !important;
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 0.88rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 16px 52px !important;
+  border-radius: 50px !important;
+  box-shadow: 0 8px 32px rgba(201,169,110,0.25);
+  transition: transform var(--trans), box-shadow var(--trans), filter var(--trans);
+  animation: fadeUp 0.8s ease both;
+  animation-delay: 0.4s;
+}
+
+.top-section .btn:hover,
+.top-section a.btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 14px 44px rgba(201,169,110,0.40);
+  filter: brightness(1.06);
+}
+
+.top-section .lead {
+  color: var(--gris-texto);
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 1.25rem;
+  line-height: 1.8;
+  animation: fadeUp 0.8s ease both;
+  animation-delay: 0.6s;
+}
+
+/* Para el texto de arriba que es bg-light — override */
+.top-section.bg-light,
+section.top-section.py-5.bg-light {
+  background: var(--negro-soft) !important;
+}
+
+.top-section.bg-light .text-black,
+.top-section.bg-light .text-dark,
+.top-section.bg-light p,
+.top-section.bg-light .lead {
+  color: var(--gris-texto) !important;
+}
+
+
+/* ================================================================
+   5. HERO — texto + video lateral
+================================================================ */
+.hero-section {
+  background: var(--negro) !important;
+  padding: 100px 0;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Línea decorativa dorada */
+.hero-section::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+}
+
+.hero-section h1 {
+  font-family: var(--font-display) !important;
+  font-size: clamp(3.5rem, 7vw, 6rem) !important;
+  font-weight: 700;
+  line-height: 1.0 !important;
+  color: var(--crema) !important;
+  text-transform: uppercase;
+  letter-spacing: -1px;
+  animation: fadeUp 0.9s ease both;
+}
+
+/* "estilo" en itálica dorada */
+.hero-section h1 em,
+.hero-section h1 br + * {
+  font-style: italic;
+  color: var(--gold);
+}
+
+.hero-section p, .hero-section .lead {
+  color: var(--gris-texto) !important;
+  font-size: 1rem !important;
+  line-height: 1.8 !important;
+  font-weight: 300;
+  animation: fadeUp 0.9s ease both 0.2s;
+  opacity: 0;
+  animation-fill-mode: forwards;
+}
+
+.hero-section video, .hero-section img {
+  border-radius: var(--radio-lg) !important;
+  box-shadow: var(--sombra), var(--sombra-gold) !important;
+  border: 1px solid rgba(201,169,110,0.12);
+  animation: fadeUp 1s ease both 0.15s;
+}
+
+
+/* ================================================================
+   6. SLIDER — carrusel + texto
+================================================================ */
+.slider-section {
+  background: var(--negro-soft) !important;
+  padding: 100px 0;
+  position: relative;
+}
+
+.slider-section::before {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(201,169,110,0.2), transparent);
+}
+
+.slider-section h2 {
+  font-family: var(--font-display) !important;
+  font-size: clamp(2.8rem, 5vw, 4.2rem) !important;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: -0.5px;
+  line-height: 1.05;
+  color: var(--crema) !important;
+}
+
+.slider-section h2 em {
+  color: var(--gold);
+  font-style: italic;
+}
+
+.slider-section p, .slider-section .lead {
+  color: var(--gris-texto) !important;
+  font-size: 0.98rem !important;
+  font-weight: 300;
+  line-height: 1.85;
+}
+
+/* Carrusel refinado */
+.carousel-inner {
+  border-radius: var(--radio-lg) !important;
+  overflow: hidden !important;
+  box-shadow: var(--sombra), 0 0 60px rgba(201,169,110,0.08) !important;
+  border: 1px solid rgba(201,169,110,0.1);
+}
+
+.carousel-item { position: relative; }
+
+.carousel-counter {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  color: var(--crema);
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  background: rgba(8,8,8,0.65);
+  backdrop-filter: blur(8px);
+  padding: 4px 12px;
+  border-radius: 50px;
+  border: 1px solid rgba(201,169,110,0.2);
+  z-index: 10;
+}
+
+/* Flechas del carrusel */
+.carousel-control-prev,
+.carousel-control-next {
+  width: 48px !important;
+  height: 48px !important;
+  background: rgba(201,169,110,0.15) !important;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(201,169,110,0.25) !important;
+  border-radius: 50% !important;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+  margin: 0 10px;
+  transition: background var(--trans), border var(--trans);
+}
+
+.carousel-control-prev:hover,
+.carousel-control-next:hover {
+  background: rgba(201,169,110,0.35) !important;
+  border-color: var(--gold) !important;
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  width: 18px !important;
+  height: 18px !important;
+}
+
+/* Indicadores */
+.carousel-indicators button {
+  width: 6px !important;
+  height: 6px !important;
+  border-radius: 50% !important;
+  background: rgba(201,169,110,0.3) !important;
+  border: none !important;
+  margin: 0 3px !important;
+  transition: background var(--trans), transform var(--trans) !important;
+}
+
+.carousel-indicators button.active {
+  background: var(--gold) !important;
+  transform: scale(1.4) !important;
+}
+
+
+/* ================================================================
+   7. INTEGRANTES
+================================================================ */
+body.pagina-integrantes,
+.pagina-integrantes {
+  background-color: var(--negro) !important;
+}
+
+/* Override inline style en body de integrantes */
+body[style*="background-color"] {
+  background-color: var(--negro) !important;
+}
+
+/* Título sección */
+section h2.text-center {
+  font-family: var(--font-display);
+  font-size: clamp(2.2rem, 4vw, 3rem);
+  font-weight: 600;
+  color: var(--crema);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+/* Línea dorada debajo del título */
+section h2.text-center::after {
+  content: '';
+  display: block;
+  width: 48px;
+  height: 2px;
+  background: var(--gold);
+  margin: 16px auto 0;
+}
+
+/* Tarjeta de integrante */
+.card-integrante {
+  background: var(--negro-card) !important;
+  border: 1px solid rgba(201,169,110,0.1) !important;
+  border-radius: 22px !important;
+  box-shadow: 0 4px 32px rgba(0,0,0,0.4) !important;
+  transition: transform var(--trans), box-shadow var(--trans), border-color var(--trans) !important;
+}
+
+.card-integrante:hover {
+  transform: translateY(-8px) !important;
+  box-shadow: 0 16px 48px rgba(0,0,0,0.5), var(--sombra-gold) !important;
+  border-color: rgba(201,169,110,0.3) !important;
+}
+
+/* Foto circular con borde dorado */
+.foto-perfil {
+  width: 110px !important;
+  height: 110px !important;
+  border: 3px solid var(--gold) !important;
+  box-shadow: 0 0 20px rgba(201,169,110,0.25) !important;
+  filter: grayscale(20%);
+  transition: filter var(--trans), box-shadow var(--trans);
+}
+
+.card-integrante:hover .foto-perfil {
+  filter: grayscale(0%);
+  box-shadow: 0 0 32px rgba(201,169,110,0.45) !important;
+}
+
+.nombre-integrante {
+  font-family: var(--font-display);
+  font-size: 1.2rem !important;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  color: var(--crema) !important;
+}
+
+.cargo-integrante {
+  font-size: 0.75rem !important;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--gold) !important;
+  margin-bottom: 12px !important;
+}
+
+.desc-integrante {
+  font-size: 0.88rem !important;
+  color: var(--gris-texto) !important;
+  line-height: 1.7;
+}
+
+
+/* ================================================================
+   8. SEMESTRES
+================================================================ */
+
+/* Secciones alternas */
+section.py-5 {
+  background: var(--negro);
+}
+
+section.py-5:nth-of-type(even) {
+  background: var(--negro-soft);
+}
+
+/* Títulos de semestres */
+section.py-5 h2 {
+  font-family: var(--font-display);
+  font-size: clamp(1.9rem, 4vw, 2.8rem);
+  font-weight: 700;
+  color: var(--crema);
+  line-height: 1.2;
+  margin-bottom: 20px;
+}
+
+section.py-5 h2::after {
+  content: '';
+  display: block;
+  width: 40px;
+  height: 2px;
+  background: var(--gold);
+  margin-top: 12px;
+}
+
+/* Párrafos de semestres */
+section.py-5 p {
+  color: var(--gris-texto);
+  font-size: 0.97rem;
+  line-height: 1.85;
+  font-weight: 300;
+}
+
+/* Override para títulos centered */
+section.py-5 h2.text-center::after {
+  margin: 12px auto 0;
+}
+
+/* Imágenes de secciones */
+.img-seccion,
+section.py-5 .img-fluid {
+  border-radius: var(--radio-lg) !important;
+  box-shadow: var(--sombra) !important;
+  border: 1px solid rgba(201,169,110,0.1);
+}
+
+/* Cards de diagramas */
+.card {
+  background: var(--negro-card) !important;
+  border: 1px solid rgba(201,169,110,0.1) !important;
+  border-radius: var(--radio-lg) !important;
+  box-shadow: 0 4px 28px rgba(0,0,0,0.4) !important;
+  overflow: hidden;
+  transition: transform var(--trans), box-shadow var(--trans), border-color var(--trans) !important;
+}
+
+.card:hover {
+  transform: translateY(-6px) !important;
+  box-shadow: 0 12px 44px rgba(0,0,0,0.5), 0 0 30px rgba(201,169,110,0.1) !important;
+  border-color: rgba(201,169,110,0.25) !important;
+}
+
+.card-img-top {
+  height: 220px !important;
+  object-fit: contain !important;
+  background: #0e0e0e !important;
+  padding: 12px !important;
+  filter: brightness(0.92) contrast(1.05);
+  transition: filter var(--trans);
+}
+
+.card:hover .card-img-top {
+  filter: brightness(1) contrast(1.08);
+}
+
+.card-body {
+  background: var(--negro-card) !important;
+  padding: 14px 16px !important;
+}
+
+.card-title {
+  font-family: var(--font-body) !important;
+  font-size: 0.82rem !important;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--gold-light) !important;
+  margin: 0 !important;
+}
+
+/* Iframe PDF */
+iframe {
+  border: 1px solid rgba(201,169,110,0.15) !important;
+  border-radius: var(--radio-lg) !important;
+  box-shadow: var(--sombra) !important;
+  background: #0e0e0e;
+}
+
+/* Clases heredadas de semestres */
+.seccion-gris   { background-color: var(--negro-soft) !important; }
+.seccion-blanca { background-color: var(--negro) !important; }
+.titulo-seccion {
+  font-family: var(--font-display);
+  font-size: clamp(2.2rem, 5vw, 3.5rem);
+  font-weight: 700;
+  text-transform: uppercase;
+  line-height: 1.1;
+  color: var(--crema);
+}
+
+
+/* ================================================================
+   9. SECCIÓN CONTACTO
+================================================================ */
+#contactanos {
+  background: var(--negro-soft) !important;
+  border-top: 1px solid rgba(201,169,110,0.12);
+}
+
+#contactanos h2 {
+  font-family: var(--font-display);
+  font-size: 2.4rem;
+  font-weight: 600;
+  color: var(--crema);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+/* Inputs */
+.form-control {
+  background: rgba(255,255,255,0.04) !important;
+  border: 1px solid rgba(201,169,110,0.2) !important;
+  border-radius: 10px !important;
+  color: var(--crema) !important;
+  font-family: var(--font-body);
+  padding: 14px 18px !important;
+  transition: border-color var(--trans), box-shadow var(--trans);
+}
+
+.form-control::placeholder { color: rgba(247,242,233,0.3); }
+
+.form-control:focus {
+  background: rgba(255,255,255,0.06) !important;
+  border-color: var(--gold) !important;
+  box-shadow: 0 0 0 3px rgba(201,169,110,0.12) !important;
+  color: var(--crema) !important;
+}
+
+#contactanos .btn {
+  background: linear-gradient(135deg, var(--gold-light), var(--gold)) !important;
+  color: var(--negro) !important;
+  border: none !important;
+  font-weight: 700;
+  font-size: 0.85rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 16px !important;
+  border-radius: 50px !important;
+  box-shadow: 0 8px 28px rgba(201,169,110,0.22);
+  transition: transform var(--trans), box-shadow var(--trans);
+}
+
+#contactanos .btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 36px rgba(201,169,110,0.35);
+}
+
+
+/* ================================================================
+   10. FOOTER
+================================================================ */
+footer {
+  background: var(--negro) !important;
+  border-top: 1px solid rgba(201,169,110,0.12);
+  padding: 36px 0 !important;
+}
+
+footer span {
+  font-family: var(--font-body);
+  font-size: 0.82rem;
+  color: rgba(247,242,233,0.4);
+  letter-spacing: 0.5px;
+  line-height: 1.8;
+}
+
+/* Logo del footer si existe */
+footer .navbar-brand,
+footer strong {
+  font-family: var(--font-display);
+  color: var(--gold);
+  font-size: 1.1rem;
+  letter-spacing: 2px;
+}
+
+footer a {
+  color: rgba(247,242,233,0.45) !important;
+  transition: color var(--trans), transform var(--trans);
+  display: inline-block;
+}
+
+footer a:hover { color: var(--gold) !important; transform: translateY(-2px); }
+
+footer .fa-instagram:hover { color: #e1306c !important; }
+footer .fa-facebook:hover  { color: #1877f2 !important; }
+
+footer .fs-4 { font-size: 1.3rem !important; }
+
+
+/* ================================================================
+   11. BOTÓN FLOTANTE DE AYUDA
+================================================================ */
+#help-button {
+  position: fixed !important;
+  bottom: 28px !important;
+  right: 28px !important;
+  cursor: pointer;
+  z-index: 9999;
+  width: 58px !important;
+  height: 58px !important;
+  border-radius: 50% !important;
+  background: linear-gradient(135deg, var(--gold-light), var(--gold)) !important;
+  box-shadow: 0 4px 20px rgba(201,169,110,0.40) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  transition: transform var(--trans), box-shadow var(--trans) !important;
+  animation: pulse-gold 3s ease-in-out infinite;
+}
+
+#help-button:hover {
+  transform: scale(1.12) !important;
+  box-shadow: 0 8px 36px rgba(201,169,110,0.55) !important;
+  animation: none;
+}
+
+#help-button img {
+  width: 26px !important;
+  filter: invert(1);
+}
+
+
+/* ================================================================
+   12. SCROLL BEHAVIOR — navbar sticky
+================================================================ */
+.navbar { position: sticky; top: 0; z-index: 1000; }
+
+
+/* ================================================================
+   13. RESPONSIVO
+================================================================ */
+@media (max-width: 992px) {
+  .hero-section  { padding: 64px 0; }
+  .slider-section { padding: 64px 0; }
+  .navbar-collapse {
+    background: rgba(8,8,8,0.97);
+    backdrop-filter: blur(20px);
+    padding: 12px 20px 20px;
+    border-top: 1px solid rgba(201,169,110,0.1);
+    margin-top: 10px;
+    border-radius: 0 0 14px 14px;
+  }
+  .navbar .nav-link::after { display: none; }
+}
+
+@media (max-width: 576px) {
+  .hero-section h1   { font-size: 2.8rem !important; }
+  .foto-perfil       { width: 90px !important; height: 90px !important; }
+  iframe             { height: 320px !important; }
+  #help-button       { bottom: 18px !important; right: 18px !important; width: 50px !important; height: 50px !important; }
+  .top-section       { padding: 50px 0 40px; }
+}
+
+/* ================================================================
+   14. UTILIDADES EXTRA
+================================================================ */
+
+/* Override Bootstrap bg-dark, bg-light en secciones */
+section.bg-dark, section.bg-light {
+  background: var(--negro-soft) !important;
+}
+
+/* Textos de Bootstrap que hay que sobreescribir */
+.text-white { color: var(--crema) !important; }
+.text-dark, .text-black { color: var(--crema) !important; }
+
+/* Botones genéricos */
+.btn-dark {
+  background: transparent !important;
+  border: 1px solid var(--gold) !important;
+  color: var(--gold) !important;
+  border-radius: 50px !important;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  font-size: 0.82rem;
+  text-transform: uppercase;
+  transition: background var(--trans), color var(--trans), box-shadow var(--trans);
+}
+
+.btn-dark:hover {
+  background: var(--gold) !important;
+  color: var(--negro) !important;
+  box-shadow: 0 6px 24px rgba(201,169,110,0.30);
+}
+
+.btn-lg {
+  padding: 16px 48px !important;
+  font-size: 0.88rem !important;
+}
+
+/* Selección de texto */
+::selection {
+  background: var(--gold);
+  color: var(--negro);
+}
+
+
+/* ================================================================
+   15. TEMA CLARO — se activa con <html class="light-mode">
+================================================================ */
+html.light-mode {
+  --negro:        #F7F4EF;
+  --negro-soft:   #EDE9E1;
+  --negro-card:   #FFFFFF;
+  --gold:         #A0742A;
+  --gold-light:   #C9933D;
+  --gold-dim:     rgba(160,116,42,0.10);
+  --crema:        #1A1612;
+  --crema-dim:    rgba(26,22,18,0.06);
+  --gris-texto:   rgba(26,22,18,0.60);
+}
+
+html.light-mode body {
+  background-color: var(--negro);
+  color: var(--crema);
+}
+
+html.light-mode body::before { opacity: 0.25; }
+
+html.light-mode .navbar {
+  background: rgba(247,244,239,0.88) !important;
+  border-bottom: 1px solid rgba(160,116,42,0.15);
+}
+
+html.light-mode .navbar.scrolled {
+  background: rgba(247,244,239,0.98) !important;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.10);
+}
+
+html.light-mode .navbar-brand {
+  background: linear-gradient(135deg, #A0742A 0%, #C9933D 50%, #7A5418 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+html.light-mode .navbar .nav-link {
+  color: rgba(26,22,18,0.70) !important;
+}
+
+html.light-mode .navbar .nav-link:hover,
+html.light-mode .navbar .nav-link.active {
+  color: var(--gold) !important;
+}
+
+html.light-mode .navbar-toggler {
+  border-color: rgba(160,116,42,0.3) !important;
+}
+
+html.light-mode .navbar-toggler-icon {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(160,116,42,0.9)' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
+}
+
+html.light-mode .navbar-collapse {
+  background: rgba(247,244,239,0.97) !important;
+  border-top: 1px solid rgba(160,116,42,0.12);
+}
+
+html.light-mode .dropdown-menu {
+  background: rgba(255,252,247,0.98) !important;
+  border: 1px solid rgba(160,116,42,0.18) !important;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.12) !important;
+}
+
+html.light-mode .dropdown-item {
+  color: rgba(26,22,18,0.65) !important;
+}
+
+html.light-mode .dropdown-item:hover {
+  background: var(--gold-dim) !important;
+  color: var(--gold) !important;
+}
+
+html.light-mode .card,
+html.light-mode .card-integrante {
+  background: #FFFFFF !important;
+  border: 1px solid rgba(160,116,42,0.12) !important;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.08) !important;
+}
+
+html.light-mode .card:hover,
+html.light-mode .card-integrante:hover {
+  box-shadow: 0 12px 36px rgba(0,0,0,0.14), 0 0 24px rgba(160,116,42,0.08) !important;
+  border-color: rgba(160,116,42,0.28) !important;
+}
+
+html.light-mode .card-img-top {
+  background: #F5F2ED !important;
+}
+
+html.light-mode .card-body {
+  background: #FFFFFF !important;
+}
+
+html.light-mode .form-control {
+  background: rgba(0,0,0,0.03) !important;
+  border: 1px solid rgba(160,116,42,0.22) !important;
+  color: var(--crema) !important;
+}
+
+html.light-mode .form-control::placeholder { color: rgba(26,22,18,0.35); }
+
+html.light-mode .form-control:focus {
+  background: rgba(0,0,0,0.04) !important;
+  border-color: var(--gold) !important;
+  box-shadow: 0 0 0 3px rgba(160,116,42,0.10) !important;
+  color: var(--crema) !important;
+}
+
+html.light-mode footer {
+  background: #E8E3D9 !important;
+  border-top: 1px solid rgba(160,116,42,0.15);
+}
+
+html.light-mode footer span {
+  color: rgba(26,22,18,0.45);
+}
+
+html.light-mode footer a {
+  color: rgba(26,22,18,0.40) !important;
+}
+
+html.light-mode #help-button {
+  background: linear-gradient(135deg, #C9933D, #A0742A) !important;
+}
+
+html.light-mode .carousel-inner {
+  border: 1px solid rgba(160,116,42,0.12);
+}
+
+html.light-mode .carousel-counter {
+  background: rgba(247,244,239,0.75);
+  color: var(--crema);
+  border: 1px solid rgba(160,116,42,0.2);
+}
+
+html.light-mode .carousel-control-prev,
+html.light-mode .carousel-control-next {
+  background: rgba(160,116,42,0.12) !important;
+  border: 1px solid rgba(160,116,42,0.25) !important;
+}
+
+html.light-mode .carousel-control-prev:hover,
+html.light-mode .carousel-control-next:hover {
+  background: rgba(160,116,42,0.28) !important;
+}
+
+html.light-mode .carousel-control-prev-icon,
+html.light-mode .carousel-control-next-icon {
+  filter: invert(1) sepia(1) saturate(2) hue-rotate(10deg);
+}
+
+html.light-mode .carousel-indicators button {
+  background: rgba(160,116,42,0.3) !important;
+}
+
+html.light-mode .carousel-indicators button.active {
+  background: var(--gold) !important;
+}
+
+html.light-mode #help-button img {
+  filter: invert(1);
+}
+
+html.light-mode section.py-5,
+html.light-mode section.py-5:nth-of-type(even) {
+  background: transparent;
+}
+
+/* Toggle button */
+.theme-toggle {
+  width: 42px;
+  height: 24px;
+  background: rgba(201,169,110,0.2);
+  border: 1px solid var(--gold);
+  border-radius: 50px;
+  cursor: pointer;
+  position: relative;
+  transition: background var(--trans), border-color var(--trans);
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  padding: 0 3px;
+}
+
+.theme-toggle::after {
+  content: '🌙';
+  font-size: 13px;
+  line-height: 1;
+  position: absolute;
+  left: 3px;
+  transition: transform var(--trans), content var(--trans);
+}
+
+html.light-mode .theme-toggle {
+  background: rgba(160,116,42,0.12);
+}
+
+html.light-mode .theme-toggle::after {
+  content: '☀️';
+  transform: translateX(18px);
+}

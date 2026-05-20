@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="es">
+ 
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ClosetVR — Integrantes</title>
+ 
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+ 
+  <!-- Font Awesome -->
+  <script src="https://kit.fontawesome.com/7eddd731f6.js" crossorigin="anonymous"></script>
+ 
+  <!-- CSS propio — sube un nivel porque el html está en /html/ -->
+  <link rel="stylesheet" href="../css/main.css" />
+ 
+  <style>
+ 
+    body {
+      background-color: var(--negro, #080808);
+    }
+ 
+    /* Tarjeta de integrante */
+    .card-integrante {
+      border: none;
+      border-radius: 20px;
+      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.12);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+ 
+    /* Efecto hover: sube un poco la tarjeta */
+    .card-integrante:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.18);
+    }
+ 
+    /* Foto de perfil circular */
+    .foto-perfil {
+      width: 120px;
+      height: 120px;
+      object-fit: cover;       
+      border-radius: 50%;
+      border: 4px solid #fff;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
+    }
+ 
+    /* Nombre del integrante */
+    .nombre-integrante {
+      font-size: 1.1rem;
+      font-weight: 700;
+    }
+ 
+    /* Cargo / rol */
+    .cargo-integrante {
+      font-weight: 700;
+      font-size: 0.95rem;
+    }
+ 
+    /* Descripción */
+    .desc-integrante {
+      font-size: 0.9rem;
+      color: #555;
+      text-align: center;
+    }
+  </style>
+    <!-- Theme: aplica antes de renderizar para evitar flash -->
+    <script>
+      (function(){
+        if(localStorage.getItem('cvr-theme')==='light') document.documentElement.classList.add('light-mode');
+      })();
+    </script>
+  </head>
+ 
+<body>
+ 
+  <!-- ============================================================
+       NAVBAR — igual que en index.html pero con href ajustados
+       para que los links funcionen desde la carpeta /html/
+  ============================================================ -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+ 
+      <!-- Logo -->
+      <a class="navbar-brand fw-bold fs-4" href="index.html">ClosetVR</a>
+ 
+      <!-- Hamburguesa para móvil -->
+      <button class="navbar-toggler" type="button"
+        data-bs-toggle="collapse" data-bs-target="#navbarMenu"
+        aria-controls="navbarMenu" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+ 
+      <!-- Menú -->
+      <div class="collapse navbar-collapse" id="navbarMenu">
+        <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-2">
+ 
+          <li class="nav-item">
+            <a class="nav-link" href="index.html">Inicio</a>
+          </li>
+ 
+          <!-- Página actual: se marca con active + aria-current -->
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="integrantes.html">Integrantes</a>
+          </li>
+ 
+          <!-- Dropdown semestres -->
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button"
+              data-bs-toggle="dropdown" aria-expanded="false">
+              Semestres
+            </a>
+            <ul class="dropdown-menu dropdown-menu-dark">
+              <li><a class="dropdown-item" href="semestre1.html">Semestre 1</a></li>
+              <li><a class="dropdown-item" href="semestre2.html">Semestre 2</a></li>
+              <li><a class="dropdown-item" href="semestre3.html">Semestre 3</a></li>
+              <li><a class="dropdown-item" href="semestre4.html">Semestre 4</a></li>
+              <li>
+                <a class="dropdown-item disabled" href="#" aria-disabled="true">
+                  Semestre 5 <img src="../images/recursos/bloqueado.png" alt="bloqueado" width="16" />
+                </a>
+              </li>
+              <li>
+                <a class="dropdown-item disabled" href="#" aria-disabled="true">
+                  Semestre 6 <img src="../images/recursos/bloqueado.png" alt="bloqueado" width="16" />
+                </a>
+              </li>
+            </ul>
+          </li>
+ 
+          <!--  Botón DESCARGA en vez de Iniciar Sesión -->
+          <li class="nav-item">
+            <a class="btn btn-dark fw-bold text-light px-3" href="descargalink.html">
+              ¡DESCARGA AHORA!
+            </a>
+          </li>
+ 
+      <!-- Toggle dark/light -->
+      <li class="nav-item d-flex align-items-center ps-lg-2">
+        <button class="theme-toggle" id="themeToggle" title="Cambiar tema" aria-label="Cambiar tema"></button>
+      </li>
+
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <!-- FIN NAVBAR -->
+ 
+ 
+  <!-- ============================================================
+       SECCIÓN INTEGRANTES
+       - py-5: padding vertical
+       - row-cols-* controla cuántas tarjetas por fila según pantalla:
+         1 en móvil, 2 en tablet, 3 en escritorio
+  ============================================================ -->
+  <section class="py-5" style="background:var(--negro,#080808)">
+    <div class="container">
+ 
+      <!-- Título de la sección (opcional, puedes quitarlo) -->
+      <h2 class="text-center fw-bold mb-5">Nuestro Equipo</h2>
+ 
+      <!-- Fila de tarjetas -->
+      <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 justify-content-center">
+ 
+ 
+        <!-- =====================
+             TARJETA 1 — Angie
+        ===================== -->
+        <div class="col">
+          <div class="card card-integrante h-100 p-4 text-center">
+ 
+            <!-- Foto circular — cambia el src por la foto real -->
+            <div class="d-flex justify-content-center mb-3">
+              <img
+                src="../images/imgintegrantes/vanessa.jpeg"
+                alt="Angie Vanessa Barrios"
+                class="foto-perfil"
+              />
+            </div>
+ 
+            <div class="card-body p-0">
+              <p class="nombre-integrante">Angie Vanessa Barrios</p>
+              <p class="cargo-integrante">Gerente:</p>
+              <p class="desc-integrante">
+                Encargada de supervisar el desarrollo y la operación general
+                de Closet VR, asegurando la integración efectiva de la
+                realidad aumentada, la satisfacción del usuario y el
+                cumplimiento de los objetivos del proyecto.
+              </p>
+            </div>
+ 
+          </div>
+        </div>
+        <!-- FIN TARJETA 1 -->
+ 
+ 
+        <!-- =====================
+             TARJETA 2 — Micheel
+        ===================== -->
+        <div class="col">
+          <div class="card card-integrante h-100 p-4 text-center">
+ 
+            <div class="d-flex justify-content-center mb-3">
+              <img
+                src="../images/imgintegrantes/micheel.jpeg"
+                alt="Micheel Fernanda Quintero"
+                class="foto-perfil"
+              />
+            </div>
+ 
+            <div class="card-body p-0">
+              <p class="nombre-integrante">Micheel Fernanda Quintero</p>
+              <p class="cargo-integrante">Ingeniera Bases de Datos:</p>
+              <p class="desc-integrante">
+                Se encarga de diseñar, mantener y optimizar la base de datos
+                que almacena la información de los usuarios y prendas.
+                También garantiza la seguridad de los datos, implementa
+                respaldos, controla el acceso y colabora con el equipo de
+                desarrollo para asegurar que la base de datos funcione de
+                manera eficiente y segura dentro de la aplicación.
+              </p>
+            </div>
+ 
+          </div>
+        </div>
+        <!-- FIN TARJETA 2 -->
+ 
+ 
+        <!-- =====================
+             TARJETA 3 — Mateo
+        ===================== -->
+        <div class="col">
+          <div class="card card-integrante h-100 p-4 text-center">
+ 
+            <div class="d-flex justify-content-center mb-3">
+              <img
+                src="../images/imgintegrantes/mateo.jpeg"
+                alt="David Mateo Moyano"
+                class="foto-perfil"
+              />
+            </div>
+ 
+            <div class="card-body p-0">
+              <p class="nombre-integrante">David Mateo Moyano Mahecha</p>
+              <p class="cargo-integrante">Desarrollador Realidad Aumentada:</p>
+              <p class="desc-integrante">
+                En Closet VR, implementa y optimiza las funciones de realidad
+                aumentada, integrando prendas y accesorios virtuales en el
+                entorno del usuario. Colabora con el equipo de diseño para
+                crear modelos 3D y realiza pruebas para garantizar una
+                experiencia de usuario fluida y realista.
+              </p>
+            </div>
+ 
+          </div>
+        </div>
+        <!-- FIN TARJETA 3 -->
+ 
+ 
+      </div>
+      <!-- FIN fila de tarjetas -->
+ 
+    </div>
+  </section>
+  <!-- FIN SECCIÓN INTEGRANTES -->
+ 
+ 
+  <!-- ============================================================
+       FOOTER — igual que en index.html
+  ============================================================ -->
+  <footer class="bg-dark text-white py-5">
+    <div class="container d-flex flex-column flex-md-row justify-content-between align-items-center gap-3">
+      <span class="text-center text-md-start">
+        &copy; Todos los derechos reservados <br /> ClosetVR
+      </span>
+      <div class="d-flex gap-3 fs-4">
+        <a href="#" class="text-white"><i class="fa-brands fa-instagram"></i></a>
+        <a href="#" class="text-white"><i class="fa-brands fa-facebook"></i></a>
+      </div>
+    </div>
+  </footer>
+  <!-- FIN FOOTER -->
+ 
+ 
+  <!-- Bootstrap 5 JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+      // Navbar scrolled
+      const navbar = document.querySelector('.navbar');
+      if(navbar) window.addEventListener('scroll', () => {
+        navbar.classList.toggle('scrolled', window.scrollY > 40);
+      });
+      // Theme toggle
+      const btn = document.getElementById('themeToggle');
+      if(btn) btn.addEventListener('click', () => {
+        const isLight = document.documentElement.classList.toggle('light-mode');
+        localStorage.setItem('cvr-theme', isLight ? 'light' : 'dark');
+      });
+    </script>
+
+</body>
+</html>

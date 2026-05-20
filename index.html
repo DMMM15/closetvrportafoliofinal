@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ClosetVR</title>
+
+    <!--  Bootstrap 5 CSS — reemplaza la mayoría del CSS manual que tenías -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+    <!--  Font Awesome para los íconos sociales y el chevron del dropdown -->
+    <script src="https://kit.fontawesome.com/7eddd731f6.js" crossorigin="anonymous"></script>
+
+    <!--  Tu CSS personalizado va al final para poder sobrescribir Bootstrap fácilmente -->
+    <link rel="stylesheet" href="../css/main.css"/>
+    <!-- Theme: aplica antes de renderizar para evitar flash -->
+    <script>
+      (function(){
+        if(localStorage.getItem('cvr-theme')==='light') document.documentElement.classList.add('light-mode');
+      })();
+    </script>
+  </head>
+
+<body>
+
+    <!-- ============================================================
+       NAVBAR — usando navbar de Bootstrap en lugar de div manual
+       - navbar-dark bg-dark: fondo oscuro con texto blanco
+       - navbar-expand-lg: en pantallas grandes se despliega horizontal
+       - container: centra y limita el ancho
+  ============================================================ -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+
+            <!-- Logo / Brand -->
+            <a class="navbar-brand fw-bold fs-4" href="index.html">ClosetVR</a>
+
+            <!-- ✅ Botón hamburguesa que aparece en móvil automáticamente con Bootstrap -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMenu"
+                aria-controls="navbarMenu" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!-- Menú colapsable -->
+            <div class="collapse navbar-collapse" id="navbarMenu">
+                <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-2">
+
+                    <!-- Enlace simple -->
+                    <li class="nav-item">
+                        <a class="nav-link" href="integrantes.html">Integrantes</a>
+                    </li>
+
+                    <!-- ✅ Dropdown de semestres usando el componente nativo de Bootstrap -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            Semestres
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-dark">
+                            <li><a class="dropdown-item" href="semestre1.html">Semestre 1</a></li>
+                            <li><a class="dropdown-item" href="semestre2.html">Semestre 2</a></li>
+                            <li><a class="dropdown-item" href="semestre3.html">Semestre 3</a></li>
+                            <li><a class="dropdown-item" href="semestre4.html">Semestre 4</a></li>
+                            <!-- Semestres bloqueados: deshabilitados visualmente con clase disabled -->
+                            <li>
+                                <a class="dropdown-item disabled" href="#" aria-disabled="true">
+                                    Semestre 5 <img src="../images/recursos/bloqueado.png" alt="bloqueado" width="16" />
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item disabled" href="#" aria-disabled="true">
+                                    Semestre 6 <img src="../images/recursos/bloqueado.png" alt="bloqueado" width="16" />
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <!-- Botón de descarga con estilo llamativo -->
+                    <li class="nav-item">
+                        <a class="btn btn-dark fw-bold text-light px-3" href="descargalink.html">
+                            ¡DESCARGA AHORA!
+                        </a>
+                    </li>
+
+                    <!-- Toggle dark/light -->
+                    <li class="nav-item d-flex align-items-center ps-lg-2">
+                      <button class="theme-toggle" id="themeToggle" title="Cambiar tema" aria-label="Cambiar tema"></button>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- FIN NAVBAR -->
+
+    <section class="top-section py-5 text-center">
+        <div class="container">
+
+            <!-- Video centrado — cambia el src si es un video diferente al del hero -->
+            <div class="row justify-content-center mb-4">
+                <div class="col-lg-8 col-md-10">
+                    <video src="../videos/speech2/closetvideo2.mp4" autoplay loop muted playsinline
+                        style="width: 100%; border-radius: 12px; box-shadow: 0 8px 32px rgba(0,0,0,0.5);">
+                        Tu navegador no soporta video HTML5.
+                    </video>
+                </div>
+            </div>
+
+            <!-- Botón de descarga — mismo href que el del navbar -->
+            <a href="descargalink.html" class="btn btn-dark btn-lg fw-bold px-5 mb-3">
+                ¡DESCARGA AHORA!
+            </a>
+
+            <!-- Texto debajo del botón — cámbialo por lo que necesites -->
+            <p class="lead mt-3 fs-3 text-dark">
+                Descarga ahora ClosetVR una aplicación pensada para ti <br />
+                el fin de solucionar problemas en las compras <br />
+                de tus prendas de vestir preferidas <br />
+                ¡Gratis!
+            </p>
+
+        </div>
+    </section>
+    <!-- FIN SECCIÓN SUPERIOR -->
+
+
+    <!-- ============================================================
+       HERO / HEADER — sección principal con texto y video
+       - d-flex + align-items-center: centra verticalmente el contenido
+       - min-vh-100: ocupa al menos toda la pantalla
+  ============================================================ -->
+    <section class="hero-section d-flex align-items-center min-vh-100 bg-dark text-white">
+        <div class="container">
+            <div class="row align-items-center g-4">
+
+                <!-- Columna izquierda: texto -->
+                <div class="col-lg-6">
+                    <h1 class="display-4 fw-bold lh-sm">
+                        Un nuevo <br />
+                        <em>estilo</em> <br />
+                        a un <br />
+                        solo click
+                    </h1>
+                    <p class="lead mt-3 fs-4">
+                        Hacemos que tus pedidos lleguen como tú deseas gracias a nuestro sistema
+                        de realidad aumentada, en la cual puedes probar ropa nueva y descubrir
+                        nuevos estilos que te llamen la atención para comprar.
+                    </p>
+                </div>
+
+                <!-- Columna derecha: video -->
+                <div class="col-lg-6 text-center">
+
+                    <video src="../videos/speech1/closetvideo1.mp4" autoplay loop muted playsinline
+                        style="width: 100%; border-radius: 12px; box-shadow: 0 8px 32px rgba(0,0,0,0.5);">
+                        Tu navegador no soporta video HTML5.
+                    </video>
+                </div>
+
+            </div>
+        </div>
+    </section>
+    <!-- FIN HERO -->
+
+
+    <!-- ============================================================
+       SLIDER — carrusel de imágenes + texto descriptivo
+       Se usa el componente Carousel de Bootstrap (reemplaza
+       todo el JS manual y el CSS inline que tenías antes).
+  ============================================================ -->
+    <section class="slider-section py-5 bg-light">
+        <div class="container">
+            <div class="row align-items-center g-5">
+
+                <!-- Columna izquierda: carrusel Bootstrap -->
+                <div class="col-lg-7">
+
+                    <!--
+            ✅ Carrusel nativo de Bootstrap:
+            - data-bs-ride="carousel": arranca automáticamente
+            - data-bs-interval="3000": cambia cada 3 segundos
+            Elimina todo el CSS inline y el JS manual del slider anterior
+          -->
+                    <div id="closetCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
+
+                        <!-- Indicadores (los puntitos de abajo) -->
+                        <div class="carousel-indicators">
+                            <!-- ✅ Generamos un botón por cada imagen (1 al 20) -->
+                            <button type="button" data-bs-target="#closetCarousel" data-bs-slide-to="0" class="active"
+                                aria-current="true" aria-label="Slide 1"></button>
+                            <button type="button" data-bs-target="#closetCarousel" data-bs-slide-to="1"
+                                aria-label="Slide 2"></button>
+                            <button type="button" data-bs-target="#closetCarousel" data-bs-slide-to="2"
+                                aria-label="Slide 3"></button>
+                            <button type="button" data-bs-target="#closetCarousel" data-bs-slide-to="3"
+                                aria-label="Slide 4"></button>
+                            <button type="button" data-bs-target="#closetCarousel" data-bs-slide-to="4"
+                                aria-label="Slide 5"></button>
+                            <button type="button" data-bs-target="#closetCarousel" data-bs-slide-to="5"
+                                aria-label="Slide 6"></button>
+                            <button type="button" data-bs-target="#closetCarousel" data-bs-slide-to="6"
+                                aria-label="Slide 7"></button>
+                            <button type="button" data-bs-target="#closetCarousel" data-bs-slide-to="7"
+                                aria-label="Slide 8"></button>
+                            <button type="button" data-bs-target="#closetCarousel" data-bs-slide-to="8"
+                                aria-label="Slide 9"></button>
+                            <button type="button" data-bs-target="#closetCarousel" data-bs-slide-to="9"
+                                aria-label="Slide 10"></button>
+                            <button type="button" data-bs-target="#closetCarousel" data-bs-slide-to="10"
+                                aria-label="Slide 11"></button>
+                            <button type="button" data-bs-target="#closetCarousel" data-bs-slide-to="11"
+                                aria-label="Slide 12"></button>
+                            <button type="button" data-bs-target="#closetCarousel" data-bs-slide-to="12"
+                                aria-label="Slide 13"></button>
+                            <button type="button" data-bs-target="#closetCarousel" data-bs-slide-to="13"
+                                aria-label="Slide 14"></button>
+                            <button type="button" data-bs-target="#closetCarousel" data-bs-slide-to="14"
+                                aria-label="Slide 15"></button>
+                            <button type="button" data-bs-target="#closetCarousel" data-bs-slide-to="15"
+                                aria-label="Slide 16"></button>
+                            <button type="button" data-bs-target="#closetCarousel" data-bs-slide-to="16"
+                                aria-label="Slide 17"></button>
+                            <button type="button" data-bs-target="#closetCarousel" data-bs-slide-to="17"
+                                aria-label="Slide 18"></button>
+                            <button type="button" data-bs-target="#closetCarousel" data-bs-slide-to="18"
+                                aria-label="Slide 19"></button>
+                            <button type="button" data-bs-target="#closetCarousel" data-bs-slide-to="19"
+                                aria-label="Slide 20"></button>
+                        </div>
+
+                        <!-- Slides -->
+                        <div class="carousel-inner rounded shadow">
+                            <!-- El primero lleva clase "active" obligatoriamente -->
+                            <div class="carousel-item active">
+                                <span class="carousel-counter">1 / 20</span>
+                                <img src="../images/slider/1.jpg" class="d-block w-100" alt="Slide 1" />
+                            </div>
+                            <div class="carousel-item">
+                                <span class="carousel-counter">2 / 20</span>
+                                <img src="../images/slider/2.jpg" class="d-block w-100" alt="Slide 2" />
+                            </div>
+                            <div class="carousel-item">
+                                <span class="carousel-counter">3 / 20</span>
+                                <img src="../images/slider/3.jpg" class="d-block w-100" alt="Slide 3" />
+                            </div>
+                            <div class="carousel-item">
+                                <span class="carousel-counter">4 / 20</span>
+                                <img src="../images/slider/4.jpg" class="d-block w-100" alt="Slide 4" />
+                            </div>
+                            <div class="carousel-item">
+                                <span class="carousel-counter">5 / 20</span>
+                                <img src="../images/slider/5.jpg" class="d-block w-100" alt="Slide 5" />
+                            </div>
+                            <div class="carousel-item">
+                                <span class="carousel-counter">6 / 20</span>
+                                <img src="../images/slider/6.jpg" class="d-block w-100" alt="Slide 6" />
+                            </div>
+                            <div class="carousel-item">
+                                <span class="carousel-counter">7 / 20</span>
+                                <img src="../images/slider/7.jpg" class="d-block w-100" alt="Slide 7" />
+                            </div>
+                            <div class="carousel-item">
+                                <span class="carousel-counter">8 / 20</span>
+                                <img src="../images/slider/8.jpg" class="d-block w-100" alt="Slide 8" />
+                            </div>
+                            <div class="carousel-item">
+                                <span class="carousel-counter">9 / 20</span>
+                                <img src="../images/slider/9.jpg" class="d-block w-100" alt="Slide 9" />
+                            </div>
+                            <div class="carousel-item">
+                                <span class="carousel-counter">10 / 20</span>
+                                <img src="../images/slider/10.jpg" class="d-block w-100" alt="Slide 10" />
+                            </div>
+                            <div class="carousel-item">
+                                <span class="carousel-counter">11 / 20</span>
+                                <img src="../images/slider/11.jpg" class="d-block w-100" alt="Slide 11" />
+                            </div>
+                            <div class="carousel-item">
+                                <span class="carousel-counter">12 / 20</span>
+                                <img src="../images/slider/12.jpg" class="d-block w-100" alt="Slide 12" />
+                            </div>
+                            <div class="carousel-item">
+                                <span class="carousel-counter">13 / 20</span>
+                                <img src="../images/slider/13.jpg" class="d-block w-100" alt="Slide 13" />
+                            </div>
+                            <div class="carousel-item">
+                                <span class="carousel-counter">14 / 20</span>
+                                <img src="../images/slider/14.jpg" class="d-block w-100" alt="Slide 14" />
+                            </div>
+                            <div class="carousel-item">
+                                <span class="carousel-counter">15 / 20</span>
+                                <img src="../images/slider/15.jpg" class="d-block w-100" alt="Slide 15" />
+                            </div>
+                            <div class="carousel-item">
+                                <span class="carousel-counter">16 / 20</span>
+                                <img src="../images/slider/16.jpg" class="d-block w-100" alt="Slide 16" />
+                            </div>
+                            <div class="carousel-item">
+                                <span class="carousel-counter">17 / 20</span>
+                                <img src="../images/slider/17.jpg" class="d-block w-100" alt="Slide 17" />
+                            </div>
+                            <div class="carousel-item">
+                                <span class="carousel-counter">18 / 20</span>
+                                <img src="../images/slider/18.jpg" class="d-block w-100" alt="Slide 18" />
+                            </div>
+                            <div class="carousel-item">
+                                <span class="carousel-counter">19 / 20</span>
+                                <img src="../images/slider/19.jpg" class="d-block w-100" alt="Slide 19" />
+                            </div>
+                            <div class="carousel-item">
+                                <span class="carousel-counter">20 / 20</span>
+                                <img src="../images/slider/20.jpg" class="d-block w-100" alt="Slide 20" />
+                            </div>
+                        </div>
+
+                        <!-- Botones anterior / siguiente -->
+                        <button class="carousel-control-prev" type="button" data-bs-target="#closetCarousel"
+                            data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Anterior</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#closetCarousel"
+                            data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Siguiente</span>
+                        </button>
+
+                    </div>
+                    <!-- FIN carrusel -->
+                </div>
+
+                <!-- Columna derecha: texto descriptivo -->
+                <div class="col-lg-5">
+                    <h2 class="display-5 fw-bold">Virtualmente <br /> a la <em>medida</em></h2>
+                    <p class="lead mt-3 fs-4">
+                        Tu tiempo es valioso y ClosetVR lo entiende perfectamente, así que desea
+                        brindarte la solución de poder probarte todo sin salir de tu hogar,
+                        creando outfits deseados y guardándolos en tu armario virtual.
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+    <!-- FIN SLIDER -->
+
+
+    <!-- ============================================================
+       SECCIÓN CONTACTO — oculta por defecto, se muestra al clic
+       del botón flotante de ayuda (ver JS abajo).
+       ⚠️ Nota: usamos display:none por compatibilidad con tu JS
+       existente. Con Bootstrap podrías usar collapse, pero así
+       mantenemos tu lógica intacta.
+  ============================================================ -->
+    <section id="contactanos" style="display: none;" class="py-5 bg-white">
+        <div class="container">
+            <h2 class="mb-4 fw-bold">Contáctanos</h2>
+
+            <!-- ✅ Formulario con clases de Bootstrap para espaciado y estilo -->
+            <div class="row justify-content-center">
+                <div class="col-md-8 col-lg-6">
+                    <div class="mb-3">
+                        <input type="text" class="form-control" id="name" placeholder="Nombre Completo" />
+                    </div>
+                    <div class="mb-3">
+                        <input type="email" class="form-control" id="mail" placeholder="Correo Electrónico" />
+                    </div>
+                    <div class="mb-3">
+                        <input type="tel" class="form-control" id="tel" placeholder="Número de Contacto" />
+                    </div>
+                    <div class="mb-3">
+                        <textarea class="form-control" id="message" rows="6"
+                            placeholder="Escribe lo que nos quieres comentar..."></textarea>
+                    </div>
+                    <button type="button" class="btn btn-dark w-100 fw-bold">Enviar</button>
+                </div>
+            </div>
+
+        </div>
+    </section>
+    <!-- FIN CONTACTO -->
+
+
+    <!-- ============================================================
+       FOOTER
+  ============================================================ -->
+    <footer class="bg-dark text-white py-4">
+        <div class="container d-flex flex-column flex-md-row justify-content-between align-items-center gap-3">
+
+            <span class="text-center text-md-start">
+                &copy; Todos los derechos reservados <br /> ClosetVR
+            </span>
+
+            <!-- Íconos de redes sociales -->
+            <div class="d-flex gap-3 fs-4">
+                <a href="#" class="text-white"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#" class="text-white"><i class="fa-brands fa-facebook"></i></a>
+            </div>
+
+        </div>
+    </footer>
+    <!-- FIN FOOTER -->
+
+
+    <!-- ============================================================
+       BOTÓN FLOTANTE DE AYUDA
+       - position: fixed + bottom/right: se queda fijo en pantalla
+       - z-index alto para que esté encima de todo
+  ============================================================ -->
+    <div id="help-button" title="¿Necesitas ayuda?" style="
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      cursor: pointer;
+      z-index: 9999;
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: #fff;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    ">
+        <img src="../images/recursos/correo-de-contacto.png" alt="Ayuda" style="width: 32px;" />
+    </div>
+
+
+    <!-- ============================================================
+       SCRIPTS — van al final del body para no bloquear la carga
+  ============================================================ -->
+
+    <!-- ✅ Bootstrap 5 JS Bundle (incluye Popper para dropdowns y carrusel) -->
+    <!-- IMPORTANTE: jQuery ya NO es necesario para Bootstrap 5 -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Lógica del botón flotante de contacto (igual que tenías) -->
+    <script>
+        document.getElementById("help-button").addEventListener("click", function () {
+            const contacto = document.getElementById("contactanos");
+            // Si está oculto → mostrarlo y hacer scroll suave hasta él
+            if (contacto.style.display === "none" || contacto.style.display === "") {
+                contacto.style.display = "block";
+                contacto.scrollIntoView({ behavior: "smooth" });
+            } else {
+                // Si ya está visible → ocultarlo
+                contacto.style.display = "none";
+            }
+        });
+    </script>
+
+    <!--
+    ✅ Contador personalizado en el carrusel (el "1 / 20" que tenías antes)
+    Se hace con CSS: ver la clase .carousel-counter en main.css
+    Agrega esto en tu main.css:
+
+    .carousel-item { position: relative; }
+    .carousel-counter {
+      position: absolute;
+      top: 10px;
+      left: 12px;
+      color: #fff;
+      font-size: 12px;
+      background: rgba(0,0,0,0.4);
+      padding: 2px 8px;
+      border-radius: 4px;
+      z-index: 10;
+    }
+  -->
+
+    <script>
+      // Navbar scrolled
+      const navbar = document.querySelector('.navbar');
+      if(navbar) window.addEventListener('scroll', () => {
+        navbar.classList.toggle('scrolled', window.scrollY > 40);
+      });
+      // Theme toggle
+      const btn = document.getElementById('themeToggle');
+      if(btn) btn.addEventListener('click', () => {
+        const isLight = document.documentElement.classList.toggle('light-mode');
+        localStorage.setItem('cvr-theme', isLight ? 'light' : 'dark');
+      });
+    </script>
+
+</body>
+
+</html>
